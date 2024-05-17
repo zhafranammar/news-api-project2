@@ -46,12 +46,13 @@ const newController = {
 
   createNew: async (req, res) => {
     try {
-      const { title, userId, content } = req.body;
-      if (!title || !userId || !content) {
+      const { title, content } = req.body;
+      const userId = req.user.userId
+      if (!title || !content) {
         return res.status(400).json({
           code: 400,
           data: null,
-          message: 'Title, userId, and content are required'
+          message: 'Title, and content are required'
         });
       }
 

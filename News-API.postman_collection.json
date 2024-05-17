@@ -1,0 +1,762 @@
+{
+	"info": {
+		"_postman_id": "a00cdfff-e5b5-4d0b-963b-98f79e53b0f6",
+		"name": "News-API",
+		"description": "# News API - Backend Developer Bootcamp Project\n\n## Deskripsi\n\nProject ini merupakan bagian dari Final Project Backend Developer Bootcamp yang diselenggarakan oleh KelasWork. Dalam proyek ini, kami mengimplementasikan pengetahuan dan keterampilan yang diperoleh selama bootcamp.\n\nAplikasi ini adalah News App Management yang memungkinkan pengguna untuk mengelola pengguna (users) dan berita (news) melalui API. Kami menggunakan arsitektur MVC (Model-View-Controller) berbasis Promise dalam pengembangan aplikasi ini. Teknologi utama yang kami gunakan meliputi Postgres sebagai basis data, Sequelize sebagai ORM (Object-Relational Mapping) untuk berinteraksi dengan basis data, Express.js sebagai framework backend, dan JWT (JSON Web Tokens) untuk autentikasi.\n\n## Fitur\n\n- **Manage Users**: Pengguna dapat membuat, mengedit, dan menghapus akun pengguna. Validasi data telah diterapkan untuk memastikan integritas data yang lebih baik, termasuk validasi untuk nama pengguna, kata sandi, email, dan nomor telepon.\n    \n- **Manage News**: Pengguna dapat membuat, mengedit, dan menghapus berita. Validasi juga telah diterapkan pada judul, slug, dan konten berita untuk memastikan data yang dimasukkan tidak boleh kosong dan harus unik.\n    \n\n### Endpoint Utama\n\n- Base URL: `http://localhost:3000`\n    \n\n## Autentikasi\n\n### 1\\. Login\n\n- **Endpoint**: `/login`\n    \n- **Metode HTTP**: POST\n    \n- **Deskripsi**: Mengirim data login dan menerima token\n    \n\n### 2\\. Register\n\n- **Endpoint**: `/register`\n    \n- **Metode HTTP**: POST\n    \n- **Deskripsi**: Mengirim data user registrasi\n    \n\n## Operasi CRUD\n\n### 1\\. Mendapatkan Semua Berita\n\n- **Endpoint**: `/news`\n    \n- **Metode HTTP**: GET\n    \n- **Deskripsi**: Mendapatkan daftar semua berita yang tersedia dalam sistem.\n    \n\n### 2\\. Mendapatkan Berita Berdasarkan ID\n\n- **Endpoint**: `/news/:id`\n    \n- **Metode HTTP**: GET\n    \n- **Deskripsi**: Mendapatkan berita tertentu berdasarkan ID yang diberikan.\n    \n\n### 3\\. Menambahkan Berita Baru\n\n- **Endpoint**: `/news`\n    \n- **Metode HTTP**: POST\n    \n- **Deskripsi**: Menambahkan berita baru ke dalam sistem.\n    \n\n### 4\\. Mengedit Berita\n\n- **Endpoint**: `/news/:id`\n    \n- **Metode HTTP**: PUT\n    \n- **Deskripsi**: Mengedit berita yang ada berdasarkan ID yang diberikan.\n    \n\n### 5\\. Menghapus Berita\n\n- **Endpoint**: `/news/:id`\n    \n- **Metode HTTP**: DELETE\n    \n- **Deskripsi**: Menghapus berita tertentu dari sistem berdasarkan ID yang diberikan.\n    \n\n## Variabel\n\nVariabel digunakan untuk menyimpan URL dasar API. Pastikan untuk menggantinya dengan URL API sesungguhnya sebelum menggunakan koleksi ini.\n\n## Pengujian\n\nKumpulan pengujian disertakan dalam koleksi ini untuk memastikan bahwa API berfungsi seperti yang diharapkan. Setiap permintaan memiliki pengujian yang sesuai untuk memverifikasi respons dari server.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34988620"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "email",
+								"value": "admin@admin.com",
+								"disabled": true
+							},
+							{
+								"key": "username",
+								"value": "test",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"tes1@mail.com\",\r\n    \"username\" : \"tes\",\r\n    \"password\" : \"tes\",\r\n    \"phone\" : \"628222222222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@admin.com",
+										"disabled": true
+									},
+									{
+										"key": "username",
+										"value": "test",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"testing@mail.com\",\r\n    \"username\" : \"tes\",\r\n    \"password\" : \"tes\",\r\n    \"phone\" : \"628222222222\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "297"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"129-VfUM1EUljryYhKOyf+B2NuCDgMo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:25:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": {\n        \"user\": {\n            \"id\": 8,\n            \"username\": \"tes\",\n            \"email\": \"testing@mail.com\",\n            \"password\": \"$2b$10$djTnebtMeXwpOfAeQ3JS/uCwSmnxUKXC1gJhDErLxG7lO8YzCcx1m\",\n            \"phone\": \"628222222222\",\n            \"createdAt\": \"2024-05-17T18:25:09.637Z\",\n            \"updatedAt\": \"2024-05-17T18:25:09.637Z\"\n        }\n    },\n    \"message\": \"User registered successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "email",
+								"value": "admin@admin.com",
+								"disabled": true
+							},
+							{
+								"key": "username",
+								"value": "test",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"admin@admin.com\",\r\n    \"password\" : \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "email",
+										"value": "admin@admin.com",
+										"disabled": true
+									},
+									{
+										"key": "username",
+										"value": "test",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"admin@admin.com\",\r\n    \"password\" : \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ee-Z0qDM1/A5LG+zp5FTWSpPIh0BdI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:24:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": {\n        \"token\": \"<token>\"\n    },\n    \"message\": \"Login successful\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "Get All News",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/news/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All News",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/news/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"news",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2349"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"92d-4GpnJxYkg2ExuF12T0xRZnxHZMY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:24:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"New 1\",\n            \"slug\": \"article-1\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 1\",\n            \"userId\": 2,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"New 2\",\n            \"slug\": \"article-2\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 2\",\n            \"userId\": 2,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"New 3\",\n            \"slug\": \"article-3\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 3\",\n            \"userId\": 3,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"New 4\",\n            \"slug\": \"article-4\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 4\",\n            \"userId\": 2,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"New 5\",\n            \"slug\": \"article-5\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 5\",\n            \"userId\": 2,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"New 6\",\n            \"slug\": \"article-6\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 6\",\n            \"userId\": 3,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"New 7\",\n            \"slug\": \"article-7\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 7\",\n            \"userId\": 1,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"New 8\",\n            \"slug\": \"article-8\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 8\",\n            \"userId\": 4,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"New 9\",\n            \"slug\": \"article-9\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 9\",\n            \"userId\": 3,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"New 10\",\n            \"slug\": \"article-10\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 10\",\n            \"userId\": 2,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"New Tes\",\n            \"slug\": \"new-tes\",\n            \"publicationDate\": \"2024-05-17T18:24:03.529Z\",\n            \"content\": \"Content of New Testing\",\n            \"userId\": 4,\n            \"createdAt\": \"2024-05-17T18:24:03.529Z\",\n            \"updatedAt\": \"2024-05-17T18:24:03.529Z\"\n        }\n    ],\n    \"message\": \"News retrieved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Detail News",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/news/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"news",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Detail News",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/news/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"news",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "512"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"200-uu65FIk+K+cQjeyMsSfNfzV3Oec\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:24:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": {\n        \"news\": {\n            \"id\": 1,\n            \"title\": \"New 1\",\n            \"slug\": \"article-1\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 1\",\n            \"userId\": 2,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        \"author\": {\n            \"id\": 2,\n            \"username\": \"Alice\",\n            \"password\": \"$2b$10$E4FgxjblJ5lwOp2oIvATouWMECoKrx4YxGPb84t8nYxEpmNT8MO1W\",\n            \"email\": \"alice@example.com\",\n            \"phone\": \"987654321\",\n            \"createdAt\": \"2024-05-16T16:46:46.755Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.755Z\"\n        }\n    },\n    \"message\": \"News retrieved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Detail News By Author Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/news/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"news",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Detail News By Author Login",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/news/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"news",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "482"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e2-px0hyos6jpw18CwWkFKRHJfr7i8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:24:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"id\": 8,\n            \"title\": \"New 8\",\n            \"slug\": \"article-8\",\n            \"publicationDate\": \"2024-05-16T16:46:46.894Z\",\n            \"content\": \"Content of New 8\",\n            \"userId\": 4,\n            \"createdAt\": \"2024-05-16T16:46:46.894Z\",\n            \"updatedAt\": \"2024-05-16T16:46:46.894Z\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"New Tes\",\n            \"slug\": \"new-tes\",\n            \"publicationDate\": \"2024-05-17T18:24:03.529Z\",\n            \"content\": \"Content of New Testing\",\n            \"userId\": 4,\n            \"createdAt\": \"2024-05-17T18:24:03.529Z\",\n            \"updatedAt\": \"2024-05-17T18:24:03.529Z\"\n        }\n    ],\n    \"message\": \"News retrieved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create News",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"New Tes\",\r\n    \"content\": \"Content of New Testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/news/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create News",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"New Tes\",\r\n    \"content\": \"Content of New Testing\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/news/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"news",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "271"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10f-kkn/BP/hrDCZiBLTVf9IN2oVIgc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:23:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"data\": {\n        \"id\": 12,\n        \"title\": \"New Tes\",\n        \"userId\": 4,\n        \"content\": \"Content of New Testing\",\n        \"slug\": \"new-tes\",\n        \"publicationDate\": \"2024-05-17T18:23:06.152Z\",\n        \"updatedAt\": \"2024-05-17T18:23:06.152Z\",\n        \"createdAt\": \"2024-05-17T18:23:06.152Z\"\n    },\n    \"message\": \"News created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit News",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"New Tes Edited\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/news/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"news",
+								"12"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit News",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"New Tes Edited\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/news/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"news",
+										"12"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "278"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"116-h7qKPfaknEbPslNkKy7P3pR2T4c\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:23:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": {\n        \"id\": 12,\n        \"title\": \"New Tes Edited\",\n        \"slug\": \"new-tes\",\n        \"publicationDate\": \"2024-05-17T18:23:06.152Z\",\n        \"content\": \"Content of New Testing\",\n        \"userId\": 4,\n        \"createdAt\": \"2024-05-17T18:23:06.152Z\",\n        \"updatedAt\": \"2024-05-17T18:23:15.867Z\"\n    },\n    \"message\": \"News updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete News",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/news/11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"news",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete News",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"New Tes Edited\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/news/12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"news",
+										"12"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-prDit9YLqG39u28EZpdAVWIf3m8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 17 May 2024 18:22:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"data\": null,\n    \"message\": \"News deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiaWF0IjoxNzE1OTY2NzI4LCJleHAiOjE3MTU5NzAzMjh9.nhYmtkkbeY8gdP3S2AWDnxAHQF9q8r_GgQY1pTkTIMs",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	]
+}
