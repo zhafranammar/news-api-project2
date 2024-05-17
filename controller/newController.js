@@ -161,7 +161,6 @@ const newController = {
     }
   },
   getNewsByAuthor: async (req, res) => {
-    console.log(req.user)
     try {
       const news = await New.findAll({ where: { userId: req.user.userId } });
       res.status(200).json({

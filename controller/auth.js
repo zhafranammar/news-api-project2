@@ -4,7 +4,13 @@ const { generateToken } = require('../helper/jwt')
 
 const register = async (req, res) => {
   const { username, email, password, phone } = req.body;
-
+  if (!username || !password || !email) {
+    return res.status(400).json({
+      code: 400,
+      data: null,
+      message: 'Required fields are missing',
+    });
+  }
   try {
     // Cek apakah email sudah digunakan
     const existingUser = await User.findOne({ where: { email } });
@@ -37,7 +43,6 @@ const register = async (req, res) => {
       message: 'User registered successfully'
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       code: 500,
       data: null,
@@ -53,7 +58,7 @@ const login = async (req, res) => {
     // Cek apakah pengguna ada di database
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json({
+      return res.status(401).json({
         code: 400,
         data: null,
         message: 'Invalid email or password'
@@ -63,8 +68,8 @@ const login = async (req, res) => {
     // Periksa password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(400).json({
-        code: 400,
+      return res.status(401).json({
+        code: 401,
         data: null,
         message: 'Invalid email or password'
       });
@@ -79,7 +84,6 @@ const login = async (req, res) => {
       message: 'Login successful'
     });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       code: 500,
       data: null,
